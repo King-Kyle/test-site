@@ -1,0 +1,413 @@
+/* ===================================================================
+* # mixins & variables
+*
+* ------------------------------------------------------------------- */
+
+// Small tablets and large smartphones (landscape view)
+$screen-sm-min: 576px;
+
+// Small tablets (portrait view)
+$screen-md-min: 768px;
+
+// Tablets and small desktops
+$screen-lg-min: 992px;
+
+// Large tablets and desktops
+$screen-xl-min: 1200px;
+
+// Small devices
+@mixin sm {
+   @media (min-width: #{$screen-sm-min}) {
+       @content;
+   }
+}
+
+// Medium devices
+@mixin md {
+   @media (min-width: #{$screen-md-min}) {
+       @content;
+   }
+}
+
+// Large devices
+@mixin lg {
+   @media (min-width: #{$screen-lg-min}) {
+       @content;
+   }
+}
+
+// Extra large devices
+@mixin xl {
+   @media (min-width: #{$screen-xl-min}) {
+       @content;
+   }
+}
+
+
+
+/* ===================================================================
+* # base style overrides
+*
+* ------------------------------------------------------------------- */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  line-height: 1.6;
+  background-color: #2C2C2C;
+  scroll-behavior: smooth;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+  color: #7EDBC0;
+  &:hover {
+    color: #fff;
+  }
+}
+
+h1 {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+}
+
+p,span {
+  color: #BABABA;
+  letter-spacing: 0.1rem;
+  font-size: .85rem;
+  font-family: 'Quicksand', sans-serif;
+}
+
+/* -------------------------------------------------------------------
+* ## side nav
+* ------------------------------------------------------------------- */
+
+#nav-vertical {
+  display: none;
+  position: fixed;
+  right: 40px;
+  top: 50%;
+  text-align: right;
+  transform: perspective(1px) translateY(-50%);
+  z-index: 1;
+  @include lg {
+    display: block;
+  }
+}
+
+#nav-vertical a {
+  color: #888;
+  display: block;
+  line-height: 2em;
+  font-weight: 700;
+  padding-right: 16px;
+  position: relative;
+  text-decoration: none;
+}
+
+#nav-vertical .nav-dot {
+  border: 1px solid;
+  border-radius: 100%;
+  display: block;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: perspective(1px) translateY(-50%);
+  transition: all 125ms linear;
+}
+#nav-vertical a:hover .nav-dot,
+#nav-vertical .nav-dot.selected {
+  transform: perspective(1px) translateY(-50%) scale(1.5);
+  background-color: #7EDBC0;
+}
+
+#nav-vertical .nav-label {
+  display: block;
+  opacity: 0.5;
+  visibility: hidden;
+  transform: perspective(1px) translateX(-15px);
+  transition: all 0.2s cubic-bezier(.17, .67, .83, .67);
+}
+#nav-vertical a:hover .nav-label {
+  opacity: 1;
+  transform: perspective(1px) translateX(-5px);
+  visibility: visible;
+}
+
+#nav-vertical ul {
+  margin: 0;
+  padding: 0;
+}
+
+#nav-vertical li {
+  width: auto;
+  list-style: none;
+}
+
+/* -------------------------------------------------------------------
+* ## home content
+* ------------------------------------------------------------------- */
+
+#navigation {
+  margin-top: 2em;
+  box-shadow: none;
+  background-color: #2C2C2C;
+  .burger {
+    margin-left: 3em;
+  }
+  .search {
+    padding-right: 3em;
+  }
+  i {
+    color: #7EDBC0;
+  }
+}
+
+.home-sec {
+  border-radius: 0px;
+  position: relative;
+  text-align: center;
+  background-color: #2C2C2C;
+  height: 90vh;
+  .heading {
+    padding-top: 20%;
+    @include md {
+      padding-top: 10vh;
+    }
+    @include lg {
+      padding-top: 20%;
+    }
+    @include xl {
+      padding-top: 25%;
+    }
+    span {
+      font-size: 1rem;
+      @include xl {
+        font-size: 2em;
+      }
+    }
+    h1 {
+      padding-top: 20px;
+      font-size: 6vh;
+      @include sm {
+        font-size: 2rem;
+      }
+      @include md {
+        font-size: 6vw;
+      }
+    }
+  }
+}
+
+.circle {
+  margin: 0 auto;
+  margin-top: 30%;
+  width: 90%;
+  height: 0;
+  padding-bottom: 90%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background-color: #292929;
+  @include md {
+    margin-top: 10%;
+    width: 50%;
+    padding-bottom: 50%;
+  }
+  @include lg {
+    margin-top: 5vh;
+    width: 40%;
+    padding-bottom: 40%;
+  }
+  @include xl {
+    margin-top: 5vh;
+  }
+}
+
+.socials {
+  display: none;
+  position: absolute;
+  left: -135px;
+  top: 45%;
+  -ms-transform: rotate(-90deg); /* IE 9 */
+  -webkit-transform: rotate(-90deg); /* Safari */
+  transform: rotate(-90deg); /* Standard syntax */
+  @include sm {
+    display: block;
+  }
+  span {
+    margin-right: 50px;
+    cursor: pointer;
+    a {
+      color: #505050;
+      &:hover {
+        color: #9572C3;
+      }
+    }
+  }
+}
+
+/* -------------------------------------------------------------------
+* ## section-1 content
+* ------------------------------------------------------------------- */
+
+.section-1 {
+  padding: 8em 0;
+  background-color: #9572C3;
+  .image-box {
+    .images {
+      margin-left: 15%;
+      @include md {
+        margin-left: 30%;
+      }
+      @include xl {
+        margin-left: 45%;
+      }
+      img {
+        width: 100px;
+        @include lg {
+          width: 180px;
+        }
+        @include xl {
+          width: 45%;
+        }
+      }
+    }
+  }
+  .text-box {
+    h1 {
+      margin-bottom: 0.5em;
+      font-size: 2.5rem;
+      @include xl {
+        font-size: 2vw;
+      }
+    }
+    span {
+      color: #fff;
+      @include xl {
+        font-size: 1em;
+      }
+    }
+    .btn {
+      margin: 2em 0;
+      width: 250px;
+      background-color: #7EDBC0;
+      color: #fff;
+    }
+  }
+}
+
+/* -------------------------------------------------------------------
+* ## section-2 content
+* ------------------------------------------------------------------- */
+
+.section-2 {
+  .thumbCard {
+    height: 350px;
+    margin-top: 10em;
+    margin-bottom: 0;
+    background-color: #7EDBC0;
+    .card-image {
+      max-width: 40%;
+      .image {
+        top: -50px;
+        left: -120px;
+        display: none;
+        @include md {
+          display: block;
+        }
+      }
+      &:hover {
+        animation-name: bounce;
+      }
+    }
+    h1 {
+      padding: 0.5em 0;
+      font-size: 2.5rem;
+      @include xl {
+        font-size: 2vw;
+      }
+    }
+    p {
+      color: #fff;
+      @include xl {
+        font-size: 1em;
+      }
+    }
+    .btn {
+      margin: 1.5em 0;
+      width: 200px;
+      background-color: #9572C3;
+      @include md {
+        width: 300px;
+      }
+    }
+  }
+
+  .megaphoneCard {
+    height: 260px;
+    margin-bottom: 2em;
+    background-color: #7EDBC0;
+    @include xl {
+      margin-bottom: 25em;
+    }
+    @include md {
+      margin-bottom: 10em;
+    }
+    .card-image {
+      .image {
+        width: 120%;
+        padding-top: 40px;
+        left: -80px;
+      }
+      &:hover {
+        animation-name: tada;
+      }
+    }
+  }
+
+  .cloudCard {
+    height: 260px;
+    margin-bottom: 10em;
+    background-color: #7EDBC0;
+    @include xl {
+      margin-bottom: 25em;
+    }
+    .card-image {
+      max-width: 40%;
+      .image {
+        display: none;
+        top: 50px;
+        left: 60px;
+        @include md {
+          display: block;
+        }
+      }
+      &:hover {
+        animation-name: jello;
+      }
+    }
+    h1 {
+      padding: 0 0 0.5em 0;
+      font-size: 2.5rem;
+      @include xl {
+        font-size: 2vw;
+      }
+    }
+    p {
+      color: #fff;
+      @include xl {
+        font-size: 1em;
+      }
+    }
+  }
+}
